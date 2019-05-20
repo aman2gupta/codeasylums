@@ -1,0 +1,77 @@
+[200~#include <iostream>
+
+using namespace std;
+struct Node{
+      int data;
+      Node* next;
+    };
+
+Node* list(Node* head)
+{   Node* temp1=new Node();
+   for(int i=0;i<10;i++)
+   {   if(head==NULL)
+        {  Node* newnode = new Node();
+           head = newnode;
+           newnode->data=i+1;
+           newnode->next= NULL;
+           temp1=head;
+        }
+        else
+        {  Node* temp = new Node();
+           temp1->next = temp;
+           temp->data=i+1;
+           temp->next=NULL;
+           temp1=temp;
+        }
+
+   }
+ return head;
+}
+Node* ins( Node* head,int dat,int pos)
+{
+    Node* pt = new Node();
+    Node* tem = new Node();
+    tem =head;
+   pt->data = dat;pt->next = NULL;
+   if(pos == 1)
+   {
+      pt->next=head;
+      head = pt;
+   }
+   else{
+      for(int i=1;i<pos;i++)
+      {
+          tem= tem->next;
+      }
+      pt->next= tem->next;
+      tem->next=pt;
+
+   }
+   return head;
+}
+int main()
+{
+    Node* head =NULL;
+
+    head = list(head);
+     Node* temp = head;
+
+     while(temp!=NULL)
+       {
+           cout<<temp->data<<endl;
+
+           temp= temp->next;
+       }
+       cout<<endl;
+
+  head = ins(head,12,1);
+  temp =head;
+ while(temp!=NULL)
+       {
+           cout<<temp->data<<endl;
+
+           temp= temp->next;
+       }
+    return 0;
+}
+
